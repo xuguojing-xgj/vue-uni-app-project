@@ -1,3 +1,7 @@
 /uni_modules
+# 将打包以后生成的文件忽略 unpackage -> dist -> dev -> mp-weixin
 /unpackage
+# 忽略编辑器相关配置
 /.hbuilderx
+
+/node_modules
