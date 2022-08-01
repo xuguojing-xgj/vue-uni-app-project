@@ -15,6 +15,6 @@
 </script>
 
 <style >
-	//  App.vue 中的style 区域 最终会被解析为 app.wxss 文件 作用域每个页面	
+	/*   App.vue 中的style 区域 最终会被解析为 app.wxss 文件 作用域每个页面	 */
 	/*每个页面公共css */
 </style>
