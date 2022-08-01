@@ -1,6 +1,6 @@
 <template>
 	<view>
-		home
+		首页
 	</view>
 </template>
 
