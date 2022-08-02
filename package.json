@@ -1,0 +1,23 @@
+{
+  "name": "vue_uni-app-project-file",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xuguojing-xgj/vue_uni-app-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xuguojing-xgj/vue_uni-app-project/issues"
+  },
+  "homepage": "https://github.com/xuguojing-xgj/vue_uni-app-project#readme",
+  "dependencies": {
+    "@escook/request-miniprogram": "^0.2.1"
+  }
+}
