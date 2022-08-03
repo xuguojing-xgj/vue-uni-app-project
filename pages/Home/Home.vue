@@ -16,16 +16,22 @@
 		data() {
 			return {
 				swiperList: [], // 轮播图
+				navList: [], // 分类导航
 			};
 		},
 		//  页面加载时 显示的数据
 		onLoad() {
+			// 调用获取轮播图数据 方法
 			this.getSwiperList()
+			// 调用获取分类数据 方法
+			this.getNavList()
 		},
 		methods: {
 			// 调用接口 发送网络请求
 			async getSwiperList() {
-				const { data : res } = await uni.$http.get('/home/swiperdata')
+				const {
+					data: res
+				} = await uni.$http.get('/home/swiperdata')
 				if (res.meta.status != 200) {
 					return uni.showToast({
 						title: "数据获取失败",
@@ -34,9 +40,26 @@
 				}
 				// 赋值数据
 				this.swiperList = res.message
+				// console.log(res)
+			},
+			// 获取导航数据
+			async getNavList() {
+				// 解构赋值
+				const {
+					data: res
+				} = await uni.$http.get('/home/catitems')
 				console.log(res)
+				if (res.meta.status != 200) {
+					return uni.showToast({
+						title: "数据获取失败",
+						icon: "none"
+					})
+				}
+				// 赋值操作
+				this.navList = res.message
 			}
-		}
+		},
+
 	}
 </script>
 
