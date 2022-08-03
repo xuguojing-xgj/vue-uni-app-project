@@ -15,6 +15,15 @@
 				<image :src="item.image_src"></image>
 			</view>
 		</view>
+		<!-- 楼层导航区域 -->
+		<view class="floor-list">
+			<!-- 每个楼层的item 结构 -->
+			<view class="floor-item" v-for="(item, i) in floorList" :key="i">
+				<!-- 楼层标题区域 -->
+				<image :src="item.floor_title.image_src"></image>
+			</view>
+
+		</view>
 	</view>
 </template>
 
@@ -99,6 +108,7 @@
 </script>
 
 <style lang="scss">
+	// 轮播图样式
 	swiper {
 		height: 350rpx;
 
@@ -109,6 +119,7 @@
 		}
 	}
 
+	// 导航样式
 	.nav-list {
 		display: flex;
 		// 两边对齐中间等距
@@ -119,6 +130,18 @@
 			image {
 				width: 128rpx;
 				height: 140rpx;
+			}
+		}
+	}
+
+	// 楼层样式
+	.floor-list {
+		margin-top: 12rpx;
+
+		.floor-item {
+			image {
+				width: 100%;
+				height: 60rpx;
 			}
 		}
 	}
