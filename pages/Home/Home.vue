@@ -11,7 +11,7 @@
 
 		<!-- 导航区域 -->
 		<view class="nav-list">
-			<view class="nav-item" v-for="(item,i) in navList" :key="i">
+			<view class="nav-item" v-for="(item,i) in navList" :key="i" @click="navClickHandler(item)">
 				<image :src="item.image_src"></image>
 			</view>
 		</view>
@@ -34,7 +34,7 @@
 			this.getNavList()
 		},
 		methods: {
-			// 调用接口 发送网络请求
+			// 调用轮播图接口 发送网络请求
 			async getSwiperList() {
 				const {
 					data: res
@@ -49,7 +49,7 @@
 				this.swiperList = res.message
 				// console.log(res)
 			},
-			// 获取导航数据
+			// 调用导航 接口获取数据
 			async getNavList() {
 				// 解构赋值
 				const {
@@ -64,6 +64,16 @@
 				}
 				// 赋值操作
 				this.navList = res.message
+			},
+			// 分类点击事件
+		  navClickHandler(val) {
+				console.log(val)
+				if(val.name == '分类') {
+					// switchTab 跳转到 tabBar 页面
+					uni.switchTab({
+						url:'/pages/cate/cate'
+					})
+				}
 			}
 		},
 
