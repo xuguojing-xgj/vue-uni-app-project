@@ -3,9 +3,10 @@
 		<!-- 轮播图 -->
 		<swiper indicator-dots autoplay :interval="3000" :duration="1000">
 			<swiper-item v-for="(item, index) in swiperList" :key="item.goods_id">
-				<view class="swiper-item">
+				<!-- 声明式导航 -->
+				<navigator :url="'/subpkg/goods_detail/goods_detail?goods_id=' + item.goods_id" class="swiper-item">
 					<image :src="item.image_src"></image>
-				</view>
+				</navigator>
 			</swiper-item>
 		</swiper>
 
