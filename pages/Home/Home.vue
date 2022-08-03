@@ -8,6 +8,13 @@
 				</view>
 			</swiper-item>
 		</swiper>
+
+		<!-- 导航区域 -->
+		<view class="nav-list">
+			<view class="nav-item" v-for="(item,i) in navList" :key="i">
+				<image :src="item.image_src"></image>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -71,6 +78,20 @@
 		image {
 			height: 100%;
 			width: 100%;
+		}
+	}
+
+	.nav-list {
+		display: flex;
+		// 两边对齐中间等距
+		justify-content: space-around;
+		margin-top: 12rpx;
+
+		.nav-item {
+			image {
+				width: 128rpx;
+				height: 140rpx;
+			}
 		}
 	}
 </style>
