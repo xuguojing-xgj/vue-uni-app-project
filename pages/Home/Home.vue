@@ -21,6 +21,22 @@
 			<view class="floor-item" v-for="(item, i) in floorList" :key="i">
 				<!-- 楼层标题区域 -->
 				<image :src="item.floor_title.image_src"></image>
+				<!-- 商品图片区域 -->
+				<view class="floor-img-box">
+					<!-- 左侧盒子 -->
+					<view class="left-img-box">
+						<image :src="item.product_list[0].image_src"
+							:style="{width: item.product_list[0].image_width + 'rpx'}" mode="widthFix"></image>
+					</view>
+					<!-- 右侧盒子 -->
+					<view class="right-img-box">
+						<view class="img-box" v-for="(itemName, i) in item.product_list" v-if="i != 0" :key="i">
+							<!-- mode="widthFix" 宽度不变 高度自适应 保持图片 原比例 -->
+							<image :src="itemName.image_src" :style="{width:itemName.image_width  + 'rpx'}"
+								mode="widthFix"></image>
+						</view>
+					</view>
+				</view>
 			</view>
 
 		</view>
@@ -142,6 +158,22 @@
 			image {
 				width: 100%;
 				height: 60rpx;
+			}
+		}
+
+		// 商品区域
+		.floor-img-box {
+			display: flex;
+			padding: 0rpx 12rpx;
+
+			.right-img-box {
+				display: flex;
+				// 多行换行
+				flex-wrap: wrap;
+			}
+
+			.img-box {
+				padding-left: 6rpx;
 			}
 		}
 	}
