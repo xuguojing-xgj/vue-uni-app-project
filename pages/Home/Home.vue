@@ -24,6 +24,7 @@
 			return {
 				swiperList: [], // 轮播图
 				navList: [], // 分类导航
+				floorList: [], // 楼层导航
 			};
 		},
 		//  页面加载时 显示的数据
@@ -32,6 +33,8 @@
 			this.getSwiperList()
 			// 调用获取分类数据 方法
 			this.getNavList()
+			// 调用获取楼层导航的数据 方法
+			this.getFloorList()
 		},
 		methods: {
 			// 调用轮播图接口 发送网络请求
@@ -66,14 +69,29 @@
 				this.navList = res.message
 			},
 			// 分类点击事件
-		  navClickHandler(val) {
+			navClickHandler(val) {
 				console.log(val)
-				if(val.name == '分类') {
+				if (val.name == '分类') {
 					// switchTab 跳转到 tabBar 页面
 					uni.switchTab({
-						url:'/pages/cate/cate'
+						url: '/pages/cate/cate'
 					})
 				}
+			},
+			// 调用楼层导航接口 获取数据
+			async getFloorList() {
+				const {
+					data: res
+				} = await uni.$http.get('/home/floordata')
+				console.log(res)
+				if (res.meta.status != 200) {
+					return uni.showToast({
+						title: "数据获取失败",
+						icon: "none"
+					})
+				}
+				// 赋值 楼层导航数据
+				this.floorList = res.message
 			}
 		},
 
