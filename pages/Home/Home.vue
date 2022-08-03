@@ -90,7 +90,7 @@
 						icon: "none"
 					})
 				}
-				// 赋值 楼层导航数据
+				// 赋值数据
 				this.floorList = res.message
 			}
 		},
