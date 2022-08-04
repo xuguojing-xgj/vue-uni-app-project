@@ -25,17 +25,18 @@
 				<!-- 商品图片区域 -->
 				<view class="floor-img-box">
 					<!-- 左侧盒子 -->
-					<view class="left-img-box">
+					<navigator :url="item.product_list[0].url" class="left-img-box">
 						<image :src="item.product_list[0].image_src"
 							:style="{width: item.product_list[0].image_width + 'rpx'}" mode="widthFix"></image>
-					</view>
+					</navigator>
 					<!-- 右侧盒子 -->
 					<view class="right-img-box">
-						<view class="img-box" v-for="(itemName, i) in item.product_list" v-if="i != 0" :key="i">
+						<navigator :url="itemName.url" class="img-box" v-for="(itemName, i) in item.product_list"
+							v-if="i != 0" :key="i">
 							<!-- mode="widthFix" 宽度不变 高度自适应 保持图片 原比例 -->
 							<image :src="itemName.image_src" :style="{width:itemName.image_width  + 'rpx'}"
 								mode="widthFix"></image>
-						</view>
+						</navigator>
 					</view>
 				</view>
 			</view>
