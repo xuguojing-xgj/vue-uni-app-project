@@ -69,12 +69,7 @@
 				const {
 					data: res
 				} = await uni.$http.get('/home/swiperdata')
-				if (res.meta.status != 200) {
-					return uni.showToast({
-						title: "数据获取失败",
-						icon: "none"
-					})
-				}
+				if (res.meta.status != 200) return uni.$showMsg()
 				// 赋值数据
 				this.swiperList = res.message
 				// console.log(res)
@@ -86,12 +81,7 @@
 					data: res
 				} = await uni.$http.get('/home/catitems')
 				console.log(res)
-				if (res.meta.status != 200) {
-					return uni.showToast({
-						title: "数据获取失败",
-						icon: "none"
-					})
-				}
+				if (res.meta.status != 200) return uni.$showMsg()
 				// 赋值操作
 				this.navList = res.message
 			},
@@ -111,12 +101,7 @@
 					data: res
 				} = await uni.$http.get('/home/floordata')
 				console.log(res)
-				if (res.meta.status != 200) {
-					return uni.showToast({
-						title: "数据获取失败",
-						icon: "none"
-					})
-				}
+				if (res.meta.status != 200) return uni.$showMsg()
 				// 对数据 进行处理
 				res.message.forEach((item) => {
 					// console.log(item)

@@ -5,6 +5,8 @@ Vue.config.productionTip = false
 
 //  导入请求配置文件
 import '@/common/request.js'
+// 导入封装的通用模板
+import '@/common/utils.js'
 
 App.mpType = 'app'
 
