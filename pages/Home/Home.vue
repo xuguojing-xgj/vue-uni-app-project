@@ -116,6 +116,14 @@
 						icon: "none"
 					})
 				}
+				// 对数据 进行处理
+				res.message.forEach((item) => {
+					// console.log(item)
+					item.product_list.forEach((itemVal) => {
+						itemVal.url = '/subpkg/goods_list/goods_list?' + itemVal.navigator_url.split(
+							'?')[1]
+					})
+				})
 				// 赋值数据
 				this.floorList = res.message
 			}
