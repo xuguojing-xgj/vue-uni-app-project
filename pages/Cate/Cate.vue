@@ -3,7 +3,9 @@
 		<view class="scroll-view-cantainer">
 			<!-- 左侧滚动视图 -->
 			<scroll-view class="left-scroll-view" scroll-y="true" :style="{height: wh + 'px'}">
-				<view class="left-scroll-item active" v-for="(item,i) in cateList" :key="item.cat_id">{{item.cat_name}}
+				<!-- left-scroll-item active -->
+				<view :class="['left-scroll-item', i === active ? 'active' : '']" v-for="(item,i) in cateList"
+					:key="item.cat_id">{{item.cat_name}}
 				</view>
 			</scroll-view>
 			<!-- 右侧滚动视图 -->
@@ -20,6 +22,7 @@
 			return {
 				wh: 0, // 当前系统窗口可用高度
 				cateList: [], // 获取分类数据
+				active: 0, // 伪元素
 			};
 		},
 		onLoad() {
