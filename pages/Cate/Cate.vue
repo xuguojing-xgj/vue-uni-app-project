@@ -19,7 +19,8 @@
 					<!-- 三级分类 -->
 					<view class="cate-lv3-list">
 						<!-- 三级分类每一项 -->
-						<view class="cate-lv3-item" v-for="(item2,i) in item.children" :key="item2.cat_id">
+						<view class="cate-lv3-item" v-for="(item2,i) in item.children" :key="item2.cat_id"
+							@click="gotoGoodsList(item2)">
 							<image :src="item2.cat_icon"></image>
 							<text>{{item2.cat_name}}</text>
 						</view>
@@ -64,12 +65,19 @@
 			changeTab(val) {
 				console.log(val)
 				this.active = val
-				
+
 				// this.scrollTop = 0 
 				this.scrollTop = this.scrollTop === 0 ? 0.1 : 0
 				// 将每个active 类 数据赋值 给二级分类
 				this.cateLevel2 = this.cateList[val].children
 				console.log(this.cateList[val].children)
+			},
+			// 点击三级列表 跳转到相应的页面
+			gotoGoodsList(item) {
+				uni.navigateTo({
+					url: '/subpkg/goods_list/goods_list?cid=' + item.cat_id
+				})
+				console.log(item)
 			}
 		}
 	}
