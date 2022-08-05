@@ -3,86 +3,10 @@
 		<view class="scroll-view-cantainer">
 			<!-- 左侧滚动视图 -->
 			<scroll-view class="left-scroll-view" scroll-y="true" :style="{height: wh + 'px'}">
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
-				<view>左侧模板</view>
+				<view class="left-scroll-item" v-for="(item,i) in cateList" :key="item.cat_id">{{item.cat_name}}</view>
 			</scroll-view>
 			<!-- 右侧滚动视图 -->
 			<scroll-view class="right-scroll-view" scroll-y="true" :style="{height: wh + 'px'}">
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
-				<view>右侧模板</view>
 				<view>右侧模板</view>
 			</scroll-view>
 		</view>
@@ -124,6 +48,13 @@
 
 		.left-scroll-view {
 			width: 120px;
+		}
+
+		.left-scroll-item {
+			height: 60px;
+			text-align: center;
+			line-height: 60px;
+			font-size: 24rpx;
 		}
 	}
 </style>
