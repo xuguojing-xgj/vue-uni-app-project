@@ -94,12 +94,26 @@
 		data() {
 			return {
 				wh: 0, // 当前系统窗口可用高度
+				cateList: [], // 获取分类数据
 			};
 		},
 		onLoad() {
 			// 获取当前系统可用高度
 			const systemInfo = uni.getSystemInfoSync()
 			this.wh = systemInfo.windowHeight
+			// 调用分类方法
+			this.getCateDate()
+		},
+		methods: {
+			// 调用接口获取分类数据
+			async getCateDate() {
+				const {
+					data: res
+				} = await uni.$http.get('/categories')
+				if (res.meta.status != 200) return uni.$showMsg()
+				this.cateList = res.message
+				console.log(this.cateList)
+			}
 		}
 	}
 </script>
