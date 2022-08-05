@@ -10,7 +10,11 @@
 			</scroll-view>
 			<!-- 右侧滚动视图 -->
 			<scroll-view class="right-scroll-view" scroll-y="true" :style="{height: wh + 'px'}">
-				<view>右侧模板</view>
+				<view>
+					<view class="cate-l2-title">
+						
+					</view>
+				</view>
 			</scroll-view>
 		</view>
 	</view>
@@ -23,6 +27,7 @@
 				wh: 0, // 当前系统窗口可用高度
 				cateList: [], // 获取分类数据
 				active: 0, // 伪元素
+				cateLevel2: [], // 二级分类数据
 			};
 		},
 		onLoad() {
@@ -40,12 +45,16 @@
 				} = await uni.$http.get('/categories')
 				if (res.meta.status != 200) return uni.$showMsg()
 				this.cateList = res.message
-				console.log(this.cateList)
+				this.cateLevel2 = res.message[0].children
+				console.log(res)
 			},
 			// 切换tab
 			changeTab(val) {
 				console.log(val)
 				this.active = val
+				// 将每个active 类 数据赋值 给二级分类
+				this.cateLevel2 = this.cateList[val].children
+				console.log(this.cateList[val].children)
 			}
 		}
 	}
