@@ -10,9 +10,10 @@
 			</scroll-view>
 			<!-- 右侧滚动视图 -->
 			<scroll-view class="right-scroll-view" scroll-y="true" :style="{height: wh + 'px'}">
-				<view>
-					<view class="cate-l2-title">
-						
+				<!-- 每一个二级分类 -->
+				<view class="cate-lv2" v-for="(item, i) in cateLevel2" :key="item.cat_id">
+					<view class="cate-lv2-title">
+						/ {{item.cat_name}} /
 					</view>
 				</view>
 			</scroll-view>
@@ -66,32 +67,36 @@
 
 		.left-scroll-view {
 			width: 120px;
-		}
 
-		.left-scroll-item {
-			height: 60px;
-			text-align: center;
-			line-height: 60px;
-			font-size: 24rpx;
-			background-color: #f7f7f7;
+			.left-scroll-item {
+				height: 60px;
+				text-align: center;
+				line-height: 60px;
+				font-size: 24rpx;
+				background-color: #f7f7f7;
 
-			// 添加 active 类
-			&.active {
-				background-color: #FFFFFF;
-				position: relative;
+				// 添加 active 类
+				&.active {
+					background-color: #FFFFFF;
+					position: relative;
 
-				// active类 切换时 加上伪元素
-				&::before {
-					content: '';
-					display: block;
-					width: 3px;
-					height: 30px;
-					background-color: #c00000;
-					position: absolute;
-					top: 50%;
-					transform: translateY(-50%);
+					// active类 切换时 加上伪元素
+					&::before {
+						content: '';
+						display: block;
+						width: 3px;
+						height: 30px;
+						background-color: #c00000;
+						position: absolute;
+						top: 50%;
+						transform: translateY(-50%);
+					}
 				}
 			}
 		}
+
+
+
+		.right-scroll-view {}
 	}
 </style>
