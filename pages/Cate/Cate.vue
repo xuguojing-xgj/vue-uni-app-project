@@ -95,8 +95,15 @@
 			}
 		}
 
+		.right-scroll-view {
 
-
-		.right-scroll-view {}
+			// 二级标题字体样式
+			.cate-lv2-title {
+				text-align: center;
+				font-size: 24rpx;
+				font-weight: bold;
+				margin: 20rpx 0rpx;
+			}
+		}
 	}
 </style>
