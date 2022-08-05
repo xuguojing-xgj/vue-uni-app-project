@@ -12,8 +12,18 @@
 			<scroll-view class="right-scroll-view" scroll-y="true" :style="{height: wh + 'px'}">
 				<!-- 每一个二级分类 -->
 				<view class="cate-lv2" v-for="(item, i) in cateLevel2" :key="item.cat_id">
+					<!-- 二级分类标题 -->
 					<view class="cate-lv2-title">
 						/ {{item.cat_name}} /
+					</view>
+					<!-- 三级分类 -->
+					<view class="cate-lv3-list">
+						<!-- 三级分类每一项 -->
+						<view class="cate-lv3-item" v-for="(item2,i) in item.children" :key="item2.cat_id">
+							<image :src="item2.cat_icon"></image>
+							<text>{{item2.cat_name}}</text>
+						</view>
+
 					</view>
 				</view>
 			</scroll-view>
