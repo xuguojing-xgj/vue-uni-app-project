@@ -5,7 +5,7 @@
 			<scroll-view class="left-scroll-view" scroll-y="true" :style="{height: wh + 'px'}">
 				<!-- left-scroll-item active -->
 				<view :class="['left-scroll-item', i === active ? 'active' : '']" v-for="(item,i) in cateList"
-					:key="item.cat_id">{{item.cat_name}}
+					:key="item.cat_id" @click="changeTab(i)">{{item.cat_name}}
 				</view>
 			</scroll-view>
 			<!-- 右侧滚动视图 -->
@@ -41,6 +41,11 @@
 				if (res.meta.status != 200) return uni.$showMsg()
 				this.cateList = res.message
 				console.log(this.cateList)
+			},
+			// 切换tab
+			changeTab(val) {
+				console.log(val)
+				this.active = val
 			}
 		}
 	}
