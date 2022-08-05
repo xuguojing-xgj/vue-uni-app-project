@@ -114,6 +114,27 @@
 				font-weight: bold;
 				margin: 20rpx 0rpx;
 			}
+
+			// 三级分类样式
+			.cate-lv3-list {
+				display: flex;
+				flex-wrap: wrap;
+				margin-bottom: 24rpx;
+
+				.cate-lv3-item {
+					display: flex;
+					// 排列盒子内容 从上到下
+					flex-direction: column;
+					width: 33.3%;
+					justify-content: center;
+					align-items: center;
+
+					image {
+						width: 120rpx;
+						height: 120rpx;
+					}
+				}
+			}
 		}
 	}
 </style>
