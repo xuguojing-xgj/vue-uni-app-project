@@ -9,7 +9,7 @@
 				</view>
 			</scroll-view>
 			<!-- 右侧滚动视图 -->
-			<scroll-view class="right-scroll-view" scroll-y="true" :style="{height: wh + 'px'}">
+			<scroll-view class="right-scroll-view" scroll-y="true" :style="{height: wh + 'px'}" :scroll-top="scrollTop">
 				<!-- 每一个二级分类 -->
 				<view class="cate-lv2" v-for="(item, i) in cateLevel2" :key="item.cat_id">
 					<!-- 二级分类标题 -->
@@ -39,6 +39,7 @@
 				cateList: [], // 获取分类数据
 				active: 0, // 伪元素
 				cateLevel2: [], // 二级分类数据
+				scrollTop: 0, // 当点击一级分类时三级分类数据在顶部显示(优化)
 			};
 		},
 		onLoad() {
@@ -63,6 +64,9 @@
 			changeTab(val) {
 				console.log(val)
 				this.active = val
+				
+				// this.scrollTop = 0 
+				this.scrollTop = this.scrollTop === 0 ? 0.1 : 0
 				// 将每个active 类 数据赋值 给二级分类
 				this.cateLevel2 = this.cateList[val].children
 				console.log(this.cateList[val].children)
