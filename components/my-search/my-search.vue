@@ -1,6 +1,6 @@
 <template>
 	<view class="my-search-container" :style="{'background-color': bgcolor}">
-		<view class="search-box" :style="{'border-radius': radius + 'px'}">
+		<view class="search-box" :style="{'border-radius': radius + 'px'}" @click="searchHandler">
 			<uni-icons type="search"></uni-icons>
 			<text>搜索</text>
 		</view>
@@ -11,10 +11,12 @@
 	export default {
 		name: "my-search",
 		props: {
+			// 背景颜色
 			bgcolor: {
 				type: String,
 				default: '#c00000'
 			},
+			// 圆角
 			radius: {
 				type: Number,
 				default: 16
@@ -24,6 +26,11 @@
 			return {
 
 			};
+		},
+		methods: {
+			searchHandler() {
+				this.$emit('searchCilck')
+			}
 		}
 	}
 </script>

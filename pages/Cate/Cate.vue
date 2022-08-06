@@ -1,6 +1,7 @@
 <template>
 	<view>
-		<my-search bgcolor="green" :radius="0"></my-search>
+		<!-- 在uni-app 中 组件直接作为标签使用即可 -->
+		<my-search @searchCilck="goToSearch"></my-search>
 		<view class="scroll-view-cantainer">
 			<!-- 左侧滚动视图 -->
 			<scroll-view class="left-scroll-view" scroll-y="true" :style="{height: wh + 'px'}">
@@ -79,6 +80,10 @@
 					url: '/subpkg/goods_list/goods_list?cid=' + item.cat_id
 				})
 				console.log(item)
+			},
+			// 自定义搜索事件, 点击搜索时跳转到搜索页面
+			goToSearch() {
+				console.log(1)
 			}
 		}
 	}
