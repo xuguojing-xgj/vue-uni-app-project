@@ -5,14 +5,14 @@
 			<uni-search-bar :radius="20" cancelButton="none" @input="input" @confirm="confirm"></uni-search-bar>
 		</view>
 		<!-- 搜索建议列表区域 -->
-		<view class="sugg-list">
+		<view class="sugg-list" v-if="searchResults.length != 0">
 			<view class="sugg-item" v-for="(item, i) in searchResults" :key="item.goods_id">
 				<view class="sugg-name">{{item.goods_name}}</view>
 				<uni-icons type="forward" size="12"></uni-icons>
 			</view>
 		</view>
 		<!-- 搜索历史区域 -->
-		<view class="history-box">
+		<view class="history-box" v-else>
 			<view class="history-title">
 				<text>搜索历史</text>
 				<uni-icons type="trash"></uni-icons>
