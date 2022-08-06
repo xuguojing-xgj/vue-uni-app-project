@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<my-search></my-search>
+		<my-search bgcolor="green" :radius="0"></my-search>
 		<view class="scroll-view-cantainer">
 			<!-- 左侧滚动视图 -->
 			<scroll-view class="left-scroll-view" scroll-y="true" :style="{height: wh + 'px'}">
