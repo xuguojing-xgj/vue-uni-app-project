@@ -1,6 +1,7 @@
 <template>
 	<view>
-		搜索
+		<!-- bgColor="#c00000" 直接使用组件内置的属性修改 -->
+		<uni-search-bar :radius="20" cancelButton="none"></uni-search-bar>
 	</view>
 </template>
 
@@ -8,7 +9,7 @@
 	export default {
 		data() {
 			return {
-				
+
 			};
 		}
 	}
