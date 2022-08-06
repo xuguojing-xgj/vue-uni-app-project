@@ -83,7 +83,9 @@
 			},
 			// 自定义搜索事件, 点击搜索时跳转到搜索页面
 			goToSearch() {
-				console.log(1)
+				uni.navigateTo({
+					url:'/subpkg/search/search'
+				})
 			}
 		}
 	}
