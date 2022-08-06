@@ -1,5 +1,8 @@
 <template>
 	<view>
+		<view class="search-box">
+			<my-search @searchCilck="goToSearch"></my-search>
+		</view>
 		<!-- 轮播图 -->
 		<swiper indicator-dots autoplay :interval="3000" :duration="1000">
 			<swiper-item v-for="(item, index) in swiperList" :key="item.goods_id">
@@ -112,6 +115,12 @@
 				})
 				// 赋值数据
 				this.floorList = res.message
+			},
+			// 自定义搜索事件, 点击搜索时跳转到搜索页面
+			goToSearch() {
+				uni.navigateTo({
+					url: '/subpkg/search/search'
+				})
 			}
 		},
 
@@ -146,6 +155,7 @@
 	}
 
 	// 楼层样式
+
 	.floor-list {
 		margin-top: 12rpx;
 
@@ -171,5 +181,14 @@
 				padding-left: 6rpx;
 			}
 		}
+	}
+
+	// 搜索吸顶效果
+	.search-box {
+		// 利用定位实现效果
+		position: sticky;
+		top: 0;
+		// 设置显示权限 防止被轮播图覆盖
+		z-index: 999;
 	}
 </style>
