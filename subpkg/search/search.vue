@@ -34,7 +34,7 @@
 				timer: null, // 定时器
 				keyword: '', // 用户输入的关键字
 				searchResults: [], // 用户搜索建议列表数据
-				historyList: ['java', 'Python', 'c++', '小明', '小红', '小明', '小红', '小明', '小红', '小明', '小红'], // 搜索历史记录
+				historyList: [], // 搜索历史记录
 			};
 		},
 		methods: {
@@ -65,12 +65,19 @@
 				})
 				if (res.meta.status != 200) return uni.$showMsg()
 				this.searchResults = res.message
-				console.log(res)
-				console.log(this.keyword.trim().length)
 			},
 			// 当点击搜索框时,  用户按下回车触发事件
 			confirm(e) {
-				console.log(e)
+				if(e.value.trim().length === 0) {
+					this.searchResults = []
+					return
+				}
+				// 调用将数据存到本地的方法
+				this.saveSearchHistory()
+			},
+			// 将数据存到本地 方法
+			saveSearchHistory() {
+				this.historyList.push(this.keyword)
 			}
 		}
 	}
