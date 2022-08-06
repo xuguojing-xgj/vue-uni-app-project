@@ -68,7 +68,7 @@
 			},
 			// 当点击搜索框时,  用户按下回车触发事件
 			confirm(e) {
-				if(e.value.trim().length === 0) {
+				if (e.value.trim().length === 0) {
 					this.searchResults = []
 					return
 				}
@@ -77,13 +77,19 @@
 			},
 			// 将数据存到本地 方法
 			saveSearchHistory() {
-				// unshift() 解决搜索历史顺序前后问题
 				this.historyList.push(this.keyword)
+				// set 去重
+				const set = new Set(this.historyList)
+				console.log(set)
+				this.historyList = Array.from(set)
+				// unshift() 解决搜索历史顺序前后问题
 			}
 		},
 		computed: {
 			history() {
 				//  不改变原数组的情况下 使用计算属性 解决搜索历史前后顺序问题 
+				//  调用 reverse方法 反转 会影响原数组 
+				//  将 [...this.historyList] 拷贝 一份就不会影响到原数组
 				return [...this.historyList].reverse()
 			}
 		}
