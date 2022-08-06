@@ -19,7 +19,7 @@
 			</view>
 			<!-- 历史记录 -->
 			<view class="history-list">
-				<view class="history-item" v-for="(item,i) in historyList" :key="i">
+				<view class="history-item" v-for="(item,i) in history" :key="i">
 					<uni-tag :text="item" />
 				</view>
 			</view>
@@ -77,7 +77,14 @@
 			},
 			// 将数据存到本地 方法
 			saveSearchHistory() {
+				// unshift() 解决搜索历史顺序前后问题
 				this.historyList.push(this.keyword)
+			}
+		},
+		computed: {
+			history() {
+				//  不改变原数组的情况下 使用计算属性 解决搜索历史前后顺序问题 
+				return [...this.historyList].reverse()
 			}
 		}
 	}
