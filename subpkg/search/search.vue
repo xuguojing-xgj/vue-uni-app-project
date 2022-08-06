@@ -4,32 +4,25 @@
 		<view class="search-box">
 			<uni-search-bar :radius="20" cancelButton="none" @input="input" @confirm="confirm"></uni-search-bar>
 		</view>
-
 		<!-- 搜索建议列表区域 -->
 		<view class="sugg-list">
-
-			<!-- 建议列表 -->
 			<view class="sugg-item" v-for="(item, i) in searchResults" :key="item.goods_id">
 				<view class="sugg-name">{{item.goods_name}}</view>
 				<uni-icons type="forward" size="12"></uni-icons>
 			</view>
-
-
-			<view class="history-box">
-				<!-- 搜索历史 -->
-				<view class="history-title">
-					<text>搜索历史</text>
-					<uni-icons type="trash"></uni-icons>
-				</view>
-
-				<!-- 历史记录 -->
-				<view class="history-list">
-					<view class="history-item" v-for="(item,i) in historyList" :key="i">
-						<uni-tag :text="item" />
-					</view>
+		</view>
+		<!-- 搜索历史区域 -->
+		<view class="history-box">
+			<view class="history-title">
+				<text>搜索历史</text>
+				<uni-icons type="trash"></uni-icons>
+			</view>
+			<!-- 历史记录 -->
+			<view class="history-list">
+				<view class="history-item" v-for="(item,i) in historyList" :key="i">
+					<uni-tag :text="item" />
 				</view>
 			</view>
-
 		</view>
 	</view>
 </template>
