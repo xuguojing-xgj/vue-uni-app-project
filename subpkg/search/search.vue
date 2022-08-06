@@ -34,7 +34,7 @@
 				timer: null, // 定时器
 				keyword: '', // 用户输入的关键字
 				searchResults: [], // 用户搜索建议列表数据
-				historyList: [], // 搜索历史记录
+				historyList: JSON.parse(uni.getStorageSync('keyword')) || [], // 搜索历史记录
 			};
 		},
 		methods: {
@@ -77,12 +77,15 @@
 			},
 			// 将数据存到本地 方法
 			saveSearchHistory() {
+				// unshift() 解决搜索历史顺序前后问题
 				this.historyList.push(this.keyword)
 				// set 去重
 				const set = new Set(this.historyList)
-				console.log(set)
 				this.historyList = Array.from(set)
-				// unshift() 解决搜索历史顺序前后问题
+
+				// 使用uni.setStorageSync 将搜索历史数据持久化
+				uni.setStorageSync('keyword', JSON.stringify(this.historyList))
+
 			}
 		},
 		computed: {
