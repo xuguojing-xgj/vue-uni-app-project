@@ -15,11 +15,11 @@
 		<view class="history-box" v-else>
 			<view class="history-title">
 				<text>搜索历史</text>
-				<uni-icons type="trash"></uni-icons>
+				<uni-icons type="trash" @click="deleteTrash"></uni-icons>
 			</view>
 			<!-- 历史记录 -->
 			<view class="history-list">
-				<view class="history-item" v-for="(item,i) in history" :key="i">
+				<view class="history-item" v-for="(item,i) in history" :key="i" @click="goToGoodsList(item)">
 					<uni-tag :text="item" />
 				</view>
 			</view>
@@ -34,10 +34,16 @@
 				timer: null, // 定时器
 				keyword: '', // 用户输入的关键字
 				searchResults: [], // 用户搜索建议列表数据
-				historyList: JSON.parse(uni.getStorageSync('keyword')) || [], // 搜索历史记录
+				historyList: JSON.parse(uni.getStorageSync('keyword') || '[]'), // 搜索历史记录
 			};
 		},
 		methods: {
+			// 点击删除图标时清空历史搜索记录
+			deleteTrash() {
+				uni.removeStorageSync('keyword')
+				this.historyList = []
+				
+			},
 			// 当输入框发生改变时 触发事件
 			input(e) {
 				// 清除 timeId 对应的延迟器
@@ -85,7 +91,13 @@
 
 				// 使用uni.setStorageSync 将搜索历史数据持久化
 				uni.setStorageSync('keyword', JSON.stringify(this.historyList))
-
+			},
+			// 点击历史记录跳转到相应的商品页面
+			goToGoodsList(val) {
+				console.log(val)
+				uni.navigateTo({
+					url: '/subpkg/goods_list/goods_list?query=' + val
+				})
 			}
 		},
 		computed: {
