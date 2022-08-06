@@ -1,7 +1,17 @@
 <template>
 	<view>
 		<!-- bgColor="#c00000" 直接使用组件内置的属性修改 -->
-		<uni-search-bar :radius="20" cancelButton="none" @input="input" @confirm="confirm"></uni-search-bar>
+		<view class="search-box">
+			<uni-search-bar :radius="20" cancelButton="none" @input="input" @confirm="confirm"></uni-search-bar>
+		</view>
+
+		<!-- 搜索建议列表区域 -->
+		<view class="sugg-list">
+			<view class="sugg-item" v-for="(item, i) in searchResults" :key="item.goods_id">
+				<view class="sugg-name">{{item.goods_name}}</view>
+				<uni-icons type="forward" size="12"></uni-icons>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -54,5 +64,29 @@
 </script>
 
 <style lang="scss">
+	// 搜索框吸顶
+	.search-box {
+		position: sticky;
+		top: 0;
+		z-index: 999;
+	}
 
+	// 搜素建议列表样式
+	.sugg-list {
+		.sugg-item {
+			display: flex;
+			padding: 13px 6px;
+			border-bottom: 1px solid #efefef;
+
+			.sugg-name {
+				font-size: 26rpx;
+				// 文字不允许换行（单行文本）
+				white-space: nowrap;
+				// 溢出部分隐藏
+				overflow: hidden;
+				// 文本溢出后使用 ... 代替
+				text-overflow: ellipsis;
+			}
+		}
+	}
 </style>
