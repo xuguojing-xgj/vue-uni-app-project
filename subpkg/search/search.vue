@@ -24,7 +24,7 @@
 
 				<!-- 历史记录 -->
 				<view class="hostory-list">
-					<uni-tag></uni-tag>
+					<uni-tag v-for="(item,i) in hostoryList" :key="i" :text="item"></uni-tag>
 				</view>
 			</view>
 
@@ -39,6 +39,7 @@
 				timer: null, // 定时器
 				keyword: '', // 用户输入的关键字
 				searchResults: [], // 用户搜索建议列表数据
+				hostoryList: ['java', 'Python', 'c++'], // 搜索历史记录
 			};
 		},
 		methods: {
@@ -104,6 +105,16 @@
 				// 文本溢出后使用 ... 代替
 				text-overflow: ellipsis;
 			}
+		}
+	}
+	.hostory-box {
+		.hostory-title{
+			display: flex;
+			// 两边对齐 中间等距
+			justify-content: space-between;
+			padding: 12rpx 12rpx;
+			font-size: 26rpx;
+			border-bottom: 1px solid #efefef;
 		}
 	}
 </style>
