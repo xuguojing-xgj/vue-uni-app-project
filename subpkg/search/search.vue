@@ -7,10 +7,27 @@
 
 		<!-- 搜索建议列表区域 -->
 		<view class="sugg-list">
+
+			<!-- 建议列表 -->
 			<view class="sugg-item" v-for="(item, i) in searchResults" :key="item.goods_id">
 				<view class="sugg-name">{{item.goods_name}}</view>
 				<uni-icons type="forward" size="12"></uni-icons>
 			</view>
+
+
+			<view class="hostory-box">
+				<!-- 搜索历史 -->
+				<view class="hostory-title">
+					<text>搜索历史</text>
+					<uni-icons type="trash"></uni-icons>
+				</view>
+
+				<!-- 历史记录 -->
+				<view class="hostory-list">
+					<uni-tag></uni-tag>
+				</view>
+			</view>
+
 		</view>
 	</view>
 </template>
