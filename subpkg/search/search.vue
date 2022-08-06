@@ -15,16 +15,18 @@
 			</view>
 
 
-			<view class="hostory-box">
+			<view class="history-box">
 				<!-- 搜索历史 -->
-				<view class="hostory-title">
+				<view class="history-title">
 					<text>搜索历史</text>
 					<uni-icons type="trash"></uni-icons>
 				</view>
 
 				<!-- 历史记录 -->
-				<view class="hostory-list">
-					<uni-tag v-for="(item,i) in hostoryList" :key="i" :text="item"></uni-tag>
+				<view class="history-list">
+					<view class="history-item" v-for="(item,i) in historyList" :key="i">
+						<uni-tag :text="item" />
+					</view>
 				</view>
 			</view>
 
@@ -39,7 +41,7 @@
 				timer: null, // 定时器
 				keyword: '', // 用户输入的关键字
 				searchResults: [], // 用户搜索建议列表数据
-				hostoryList: ['java', 'Python', 'c++'], // 搜索历史记录
+				historyList: ['java', 'Python', 'c++', '小明', '小红', '小明', '小红', '小明', '小红', '小明', '小红'], // 搜索历史记录
 			};
 		},
 		methods: {
@@ -90,31 +92,45 @@
 	}
 
 	// 搜素建议列表样式
-	.sugg-list {
-		.sugg-item {
-			display: flex;
-			padding: 13px 6px;
-			border-bottom: 1px solid #efefef;
 
-			.sugg-name {
-				font-size: 26rpx;
-				// 文字不允许换行（单行文本）
-				white-space: nowrap;
-				// 溢出部分隐藏
-				overflow: hidden;
-				// 文本溢出后使用 ... 代替
-				text-overflow: ellipsis;
-			}
+	.sugg-item {
+		display: flex;
+		padding: 13px 6px;
+		border-bottom: 1px solid #efefef;
+
+		.sugg-name {
+			font-size: 26rpx;
+			// 文字不允许换行（单行文本）
+			white-space: nowrap;
+			// 溢出部分隐藏
+			overflow: hidden;
+			// 文本溢出后使用 ... 代替
+			text-overflow: ellipsis;
 		}
 	}
-	.hostory-box {
-		.hostory-title{
+
+	.history-box {
+		.history-title {
 			display: flex;
 			// 两边对齐 中间等距
 			justify-content: space-between;
 			padding: 12rpx 12rpx;
 			font-size: 26rpx;
 			border-bottom: 1px solid #efefef;
+		}
+
+		.history-list {
+			display: flex;
+			flex-wrap: wrap;
+
+			.history-item {
+				margin: 24rpx 0rpx 0rpx 24rpx;
+			}
+
+			// uni-tag {
+			// 	margin-left: 24rpx;
+			// 	margin-bottom: 24rpx;
+			// }
 		}
 	}
 </style>
