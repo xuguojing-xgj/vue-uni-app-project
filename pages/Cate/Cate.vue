@@ -48,7 +48,7 @@
 		onLoad() {
 			// 获取当前系统可用高度
 			const systemInfo = uni.getSystemInfoSync()
-			this.wh = systemInfo.windowHeight
+			this.wh = systemInfo.windowHeight - 50
 			// 调用分类方法
 			this.getCateDate()
 		},
