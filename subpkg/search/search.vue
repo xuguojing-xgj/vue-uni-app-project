@@ -6,7 +6,8 @@
 		</view>
 		<!-- 搜索建议列表区域 -->
 		<view class="sugg-list" v-if="searchResults.length != 0">
-			<view class="sugg-item" v-for="(item, i) in searchResults" :key="item.goods_id">
+			<view class="sugg-item" v-for="(item, i) in searchResults" :key="item.goods_id"
+				@click="goToGoodsDateil(item)">
 				<view class="sugg-name">{{item.goods_name}}</view>
 				<uni-icons type="forward" size="12"></uni-icons>
 			</view>
@@ -42,7 +43,7 @@
 			deleteTrash() {
 				uni.removeStorageSync('keyword')
 				this.historyList = []
-				
+
 			},
 			// 当输入框发生改变时 触发事件
 			input(e) {
@@ -78,6 +79,10 @@
 					this.searchResults = []
 					return
 				}
+				// 用户按下回车之后 跳转到对应的商品页面
+				uni.navigateTo({
+					url: '/subpkg/goods_list/goods_list?query=' + e.value
+				})
 				// 调用将数据存到本地的方法
 				this.saveSearchHistory()
 			},
@@ -98,6 +103,10 @@
 				uni.navigateTo({
 					url: '/subpkg/goods_list/goods_list?query=' + val
 				})
+			},
+			// 
+			goToGoodsDateil() {
+
 			}
 		},
 		computed: {
