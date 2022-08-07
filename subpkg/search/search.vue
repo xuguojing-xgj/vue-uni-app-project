@@ -79,7 +79,7 @@
 					this.searchResults = []
 					return
 				}
-				// 用户按下回车之后 跳转到对应的商品页面
+				// 用户按下回车之后 跳转到对应的商品列表页
 				uni.navigateTo({
 					url: '/subpkg/goods_list/goods_list?query=' + e.value
 				})
@@ -97,15 +97,19 @@
 				// 使用uni.setStorageSync 将搜索历史数据持久化
 				uni.setStorageSync('keyword', JSON.stringify(this.historyList))
 			},
-			// 点击历史记录跳转到相应的商品页面
+			// 点击历史记录跳转到相应的商品列表页
 			goToGoodsList(val) {
 				console.log(val)
 				uni.navigateTo({
 					url: '/subpkg/goods_list/goods_list?query=' + val
 				})
 			},
-			// 
-			goToGoodsDateil() {
+			// 点击搜索建议 跳转到对应的商品详情页
+			goToGoodsDateil(val) {
+				console.log(val)
+				uni.navigateTo({
+					url: '//subpkg/goods_detail/goods_detail?goods_id=' + val.goods_id
+				})
 
 			}
 		},
