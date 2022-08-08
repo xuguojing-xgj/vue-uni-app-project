@@ -13,7 +13,7 @@
 			<view class="goods-info-box">
 				<!-- 商品价格 -->
 				<view class="goods-price">
-					{{goods.goods_price}}
+					{{goods.goods_price | tofixed}}
 				</view>
 
 			</view>
@@ -34,7 +34,13 @@
 			return {
 				// 默认的空图片
 				defaultPic: 'https://img3.doubanio.com/f/movie/8dd0c794499fe925ae2ae89ee30cd225750457b4/pics/movie/celebrity-default-medium.png',
-			};
+			}
+		},
+		filters: {
+			// 保留两位小数点
+			tofixed(price) {
+			return Number(price).toFixed(2)
+			}
 		}
 	}
 </script>
