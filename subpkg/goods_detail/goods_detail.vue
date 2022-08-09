@@ -47,7 +47,8 @@
 
 <script>
 	import {
-		mapState
+		mapState,
+		mapMutations
 	} from 'vuex'
 	export default {
 		data() {
@@ -83,6 +84,9 @@
 			this.getGoodsDetail(goods_id)
 		},
 		methods: {
+			// 第一个参数：模块的名称
+			// 第二个参数 [] 数组：模块中的 mutation 方法
+			...mapMutations('m_cart', ['addToCart']),
 			// 轮播图预览功能
 			preview(val) {
 				console.log(val)
@@ -103,7 +107,17 @@
 			},
 			// 商品右侧点击事件
 			rightClick(e) {
-
+				if (e.content.text == '加入购物车') {
+					const goodsParams = {
+						goods_id: this.goods_info.goods_id, // 商品id
+						goods_name: this.goods_info.goods_name, // 商品名称
+						goods_price: this.goods_info.goods_price, // 商品价格
+						goods_small_logo: this.goods_info.goods_small_logo, //小图片
+						goods_number: 1, // 购买数量
+						goods_status: true, //购买状态
+					}
+					this.addToCart(goodsParams)
+				}
 			},
 
 			// 获取商品详情数据的方法
