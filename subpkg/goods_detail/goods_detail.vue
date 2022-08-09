@@ -86,7 +86,7 @@
 		methods: {
 			// 第一个参数：模块的名称
 			// 第二个参数 [] 数组：模块中的 mutation 方法
-			...mapMutations('m_cart', ['addToCart']),
+			...mapMutations('m_cart', ['addToCart']), // 将 `this.addToCart()` 映射为 `this.$store.commit('addToCart')`
 			// 轮播图预览功能
 			preview(val) {
 				console.log(val)

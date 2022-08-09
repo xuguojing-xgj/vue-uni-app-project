@@ -14,6 +14,12 @@ export default {
 	mutations: {
 		// 将商品添加到购物车
 		addToCart(state, goodsInfo) {
+			const findResult = state.cart.find(item => item.goods_id === goodsInfo.goods_id)
+			if (!findResult) {
+				state.cart.push(goodsInfo)
+			} else {
+				findResult.goods_count++
+			}
 			console.log(state, goodsInfo)
 		},
 	},
