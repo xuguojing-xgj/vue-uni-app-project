@@ -2,9 +2,9 @@
 	<view>
 		<view class="goods-list">
 			<!--  block 不是一个组件，就是一个标签，这个标签一般就是配置 渲染和跳转判断来使用的 -->
-			<block v-for="(goods, i) in goodsList" :key="i">
+			<view v-for="(goods, i) in goodsList" :key="i" @click="goToGoodsDetail(goods)">
 				<my-goods :goods="goods"></my-goods>
-			</block>
+			</view>
 		</view>
 	</view>
 </template>
@@ -65,6 +65,13 @@
 			})
 		},
 		methods: {
+			// 点击item 跳转到对应的商品详情
+			goToGoodsDetail(item) {
+				console.log(item)
+				uni.navigateTo({
+					url: '/subpkg/goods_detail/goods_detail?goods_id=' + item.goods_id
+				})
+			},
 			// 获取商品列表数据 方法
 			async getGoodsList(callback) {
 				console.log(callback)
