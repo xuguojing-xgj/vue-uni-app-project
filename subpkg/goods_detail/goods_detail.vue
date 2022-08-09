@@ -3,7 +3,7 @@
 		<!-- 轮播图区域 -->
 		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
 			<swiper-item v-for="(item, i) in goods_info.pics" :key="i">
-				<image :src="item.pics_big"></image>
+				<image :src="item.pics_big" @click="preview(i)"></image>
 			</swiper-item>
 		</swiper>
 
@@ -80,6 +80,14 @@
 			this.getGoodsDetail(goods_id)
 		},
 		methods: {
+			// 轮播图预览功能
+			preview(val) {
+				console.log(val)
+				uni.previewImage({
+					current: val,
+					urls: this.goods_info.pics.map(item => item.pics_big)
+				})
+			},
 			// 商品左侧点击事件
 			leftClick(e) {
 				console.log(e)
