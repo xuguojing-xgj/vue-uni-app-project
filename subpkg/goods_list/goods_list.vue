@@ -22,6 +22,7 @@
 				},
 				goodsList: [], // 商品列表
 				total: 0, // 商品列表总条数
+				isLoading: false, // 设置节流阀 数据是否正在请求中
 
 			};
 		},
@@ -36,6 +37,8 @@
 		},
 		// 页面上拉触底事件函数处理
 		onReachBottom() {
+			// 数据正在请求时... 不去加载下一页内容
+			if (this.isLoading) return
 			// 页码加1
 			this.queryObj.pagenum += 1
 			// 再次请求数据
@@ -44,10 +47,14 @@
 		methods: {
 			// 获取商品列表数据 方法
 			async getGoodsList() {
+				// 将 loading 设置为 true 表示数据正在请求中....
+				this.isLoading = true
 				const {
 					data: res
 				} = await uni.$http.get('/goods/search', this.queryObj)
 				if (res.meta.status != 200) return uni.$showMsg()
+				// 将 loading 设置为 false 数据请求结束
+				this.isLoading = false
 				// 让上一页的数据 跟最新的数据合并 才能够在页面展示
 				this.goodsList = [...this.goodsList, ...res.message.goods]
 				this.total = res.message.total
