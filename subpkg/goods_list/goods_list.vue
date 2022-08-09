@@ -39,6 +39,11 @@
 		onReachBottom() {
 			// 数据正在请求时... 不去加载下一页内容
 			if (this.isLoading) return
+			// 判断数据是否加载完毕, 加载完毕给用户提示
+			// this.goodsList.length 
+			if (this.queryObj.pagenum * this.queryObj.pageSize >= this.total) {
+				return uni.$showMsg('数据加载完成~')
+			}
 			// 页码加1
 			this.queryObj.pagenum += 1
 			// 再次请求数据
