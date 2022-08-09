@@ -7,10 +7,12 @@ Vue.config.productionTip = false
 import '@/common/request.js'
 // 导入封装的通用模板
 import '@/common/utils.js'
-
+// 导入 vuex 实例化
+import store from './store/store.js'
 App.mpType = 'app'
 
 const app = new Vue({
-	...App
+	...App,
+	store
 })
 app.$mount()
