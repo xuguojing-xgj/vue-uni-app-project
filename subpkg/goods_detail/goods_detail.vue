@@ -80,14 +80,21 @@
 			this.getGoodsDetail(goods_id)
 		},
 		methods: {
-			// 商品右侧点击事件
-			rightClick(index, content) {
-				console.log(index, content)
-			},
 			// 商品左侧点击事件
-			leftClick(index, content) {
-				console.log(index, content)
+			leftClick(e) {
+				console.log(e)
+				if (e.content.text == '购物车') {
+					// 	跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面
+					uni.switchTab({
+						url: "/pages/cart/cart"
+					})
+				}
 			},
+			// 商品右侧点击事件
+			rightClick(e) {
+
+			},
+
 			// 获取商品详情数据的方法
 			async getGoodsDetail(goods_id) {
 				const {
