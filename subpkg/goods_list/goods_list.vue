@@ -34,7 +34,13 @@
 			// 调用获取商品列表数据 方法
 			this.getGoodsList()
 		},
-
+		// 页面上拉触底事件函数处理
+		onReachBottom() {
+			// 页码加1
+			this.queryObj.pagenum += 1
+			// 再次请求数据
+			this.getGoodsList()
+		},
 		methods: {
 			// 获取商品列表数据 方法
 			async getGoodsList() {
@@ -42,7 +48,8 @@
 					data: res
 				} = await uni.$http.get('/goods/search', this.queryObj)
 				if (res.meta.status != 200) return uni.$showMsg()
-				this.goodsList = res.message.goods
+				// 让上一页的数据 跟最新的数据合并 才能够在页面展示
+				this.goodsList = [...this.goodsList, ...res.message.goods]
 				this.total = res.message.total
 				console.log(res)
 			}
