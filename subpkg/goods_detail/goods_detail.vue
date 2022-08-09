@@ -22,7 +22,7 @@
 				</view>
 			</view>
 			<!-- 运费 -->
-			<view class="yf">快递：免运费</view>
+			<view class="yf">快递：免运费 --- {{cart.length}}</view>
 		</view>
 
 		<!-- 商品详情信息 -->
@@ -46,6 +46,9 @@
 </template>
 
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -116,6 +119,12 @@
 				res.message.goods_introduce = res.message.goods_introduce.replace(/webp /g, 'jpg')
 				this.goods_info = res.message
 			}
+		},
+		computed: {
+			// 接收两个参数
+			// 第一个参数 : 从哪个模块导入数据
+			// 第二个参数 为 [], 表示导入的数据 需要引号包裹
+			...mapState('m_cart', ['cart'])
 		}
 	}
 </script>
