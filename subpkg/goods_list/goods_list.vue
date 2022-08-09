@@ -49,9 +49,25 @@
 			// 再次请求数据
 			this.getGoodsList()
 		},
+
+		// 监听页面下拉刷新
+		onPullDownRefresh() {
+			console.log('监听下拉刷新')
+			// 重置数据
+			this.queryObj.pagenum = 1
+			this.goodsList = []
+			this.total = 0
+			this.isLoading = false
+
+			// 重新请求数据
+			this.getGoodsList(() => {
+				uni.stopPullDownRefresh()
+			})
+		},
 		methods: {
 			// 获取商品列表数据 方法
-			async getGoodsList() {
+			async getGoodsList(callback) {
+				console.log(callback)
 				// 将 loading 设置为 true 表示数据正在请求中....
 				this.isLoading = true
 				const {
@@ -63,6 +79,8 @@
 				// 让上一页的数据 跟最新的数据合并 才能够在页面展示
 				this.goodsList = [...this.goodsList, ...res.message.goods]
 				this.total = res.message.total
+				// 数据请求完成之后 取消下拉刷新
+				callback && callback()
 				console.log(res)
 			}
 		}
