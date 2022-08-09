@@ -28,6 +28,20 @@
 		<!-- 商品详情信息 -->
 		<!-- rich-text 是渲染富文本的一个组件 -->
 		<rich-text :nodes="goods_info.goods_introduce"></rich-text>
+
+		<!-- 商品导航区域 -->
+		<view class="uni-goods-nav">
+			<!--fill 让右侧按钮变成圆角  -->
+			<!-- 使用 uni-ui 提供的商品导航组件 -->
+			<!-- fill 设置按钮的样式为椭圆形 -->
+			<!-- options 配合左侧区域的结构 -->
+			<!-- buttonGroup 配置右侧按钮 -->
+			<!-- @click 左侧区域的点击事件 -->
+			<!-- @buttonClick 右侧区域的点击事件 -->
+			<uni-goods-nav :fill="true" :buttonGroup='buttonGroup' :options='options' @click="leftClick"
+				@buttonClick="rightClick">
+			</uni-goods-nav>
+		</view>
 	</view>
 </template>
 
@@ -36,6 +50,26 @@
 		data() {
 			return {
 				goods_info: {}, // 商品详情
+				// options 配置的是商品导航区域的选项
+				options: [{
+					icon: 'shop',
+					text: '店铺',
+				}, {
+					icon: 'cart',
+					text: '购物车',
+					info: 7 // 购物车商品的数量
+				}],
+				buttonGroup: [{
+						text: '加入购物车',
+						backgroundColor: '#ff0000',
+						color: '#fff'
+					},
+					{
+						text: '立即购买',
+						backgroundColor: '#ffa200',
+						color: '#fff'
+					}
+				]
 			}
 		},
 		onLoad(options) {
@@ -46,6 +80,14 @@
 			this.getGoodsDetail(goods_id)
 		},
 		methods: {
+			// 商品右侧点击事件
+			rightClick(index, content) {
+				console.log(index, content)
+			},
+			// 商品左侧点击事件
+			leftClick(index, content) {
+				console.log(index, content)
+			},
 			// 获取商品详情数据的方法
 			async getGoodsDetail(goods_id) {
 				const {
