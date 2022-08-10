@@ -8,7 +8,7 @@
 
 		<!-- 购物车列表区域 -->
 		<block v-for="(goods, i) in cart" :key="i">
-			<my-goods :goods="goods" :showRadio="true" @radio-change="radioChangeFn"></my-goods>
+			<my-goods :goods="goods" :showNum="true" :showRadio="true" @radio-change="radioChangeFn"></my-goods>
 		</block>
 	</view>
 </template>

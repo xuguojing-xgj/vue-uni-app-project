@@ -1,7 +1,7 @@
 <template>
 	<view class="goods-item">
 		<view class="goods-item-left">
-			<radio v-if="showRadio" :checked="goods.goods_status" color="#c00000" @click="radioChangeHandler"/>
+			<radio v-if="showRadio" :checked="goods.goods_status" color="#c00000" @click="radioChangeHandler" />
 			<image :src="goods.goods_small_logo || defaultPic" class="goods-pic"></image>
 		</view>
 
@@ -16,7 +16,7 @@
 				<view class="goods-price">
 					{{goods.goods_price | tofixed}}
 				</view>
-
+				<uni-number-box v-if="showNum" :min="1" :value="goods.goods_count"></uni-number-box>
 			</view>
 		</view>
 	</view>
@@ -26,11 +26,18 @@
 	export default {
 		name: "my-goods",
 		props: {
+			// 商品数据
 			goods: {
 				type: Object,
 				required: true
 			},
+			// 是否展示单选组件
 			showRadio: {
+				type: Boolean,
+				default: false
+			},
+			// 是否展示数字输入框
+			showNum: {
 				type: Boolean,
 				default: false
 			}
@@ -55,7 +62,7 @@
 					goodsState: !this.goods.goods_status // 最新状态
 				})
 			}
-		
+
 		}
 	}
 </script>
@@ -98,6 +105,12 @@
 			.goods-price {
 				font-size: 16px;
 				color: #c00000;
+			}
+
+			.goods-info-box {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
 			}
 		}
 	}
