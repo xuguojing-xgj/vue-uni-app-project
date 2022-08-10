@@ -143,12 +143,18 @@
 			...mapGetters('m_cart', ['total'])
 		},
 		watch: {
-			total(newTotal) {
-				const cartObj = this.options.find(item => item.text === '购物车')
-				if(cartObj) {
-					console.log(cartObj)
-					cartObj.info = newTotal
-				}
+			// 定义total 侦听器 指向一个配置对象
+			total: {
+				// handler 属性来定义 侦听器的function属性
+				handler(newTotal) {
+					const cartObj = this.options.find(item => item.text === '购物车')
+					if (cartObj) {
+						console.log(cartObj)
+						cartObj.info = newTotal
+					}
+				},
+				// 立即侦听
+				immediate: true
 			}
 		}
 	}
