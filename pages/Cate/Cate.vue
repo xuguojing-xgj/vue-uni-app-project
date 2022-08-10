@@ -35,7 +35,9 @@
 </template>
 
 <script>
+	import tabBarMixin from '../../mixins/tabbar-badge.js'
 	export default {
+		mixins: [tabBarMixin],
 		data() {
 			return {
 				wh: 0, // 当前系统窗口可用高度
@@ -84,7 +86,7 @@
 			// 自定义搜索事件, 点击搜索时跳转到搜索页面
 			goToSearch() {
 				uni.navigateTo({
-					url:'/subpkg/search/search'
+					url: '/subpkg/search/search'
 				})
 			}
 		}

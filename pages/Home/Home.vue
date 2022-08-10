@@ -49,7 +49,9 @@
 </template>
 
 <script>
+	import tabBarMixin from '../../mixins/tabbar-badge.js'
 	export default {
+		mixins: [tabBarMixin],
 		data() {
 			return {
 				swiperList: [], // 轮播图
