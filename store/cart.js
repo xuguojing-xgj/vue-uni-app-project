@@ -8,7 +8,7 @@ export default {
 	state: () => ({
 		// 存储购物车数据
 
-		cart: [],
+		cart: JSON.parse(uni.getStorageSync('cart') || '[]'),
 	}),
 	// 对数据进行修改
 	mutations: {
@@ -21,7 +21,13 @@ export default {
 				findResult.goods_count++
 			}
 			console.log(state, goodsInfo)
+			this.commit('m_cart/saveToStorage')
 		},
+
+		// 将购物车商品存储带本地
+		saveToStorage(state) {
+			uni.setStorageSync('cart', JSON.stringify(state.cart))
+		}
 	},
 	// 对数据格式化的计算属性
 	getters: {
