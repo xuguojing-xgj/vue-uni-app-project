@@ -23,7 +23,17 @@ export default {
 			console.log(state, goodsInfo)
 			this.commit('m_cart/saveToStorage')
 		},
-
+		// 更新商品状态
+		updateGoodsState(state, goodsInfo) {
+			
+			const stateResult = state.cart.find(item => item.goods_id === goodsInfo.goodsId)
+			
+			if (stateResult) {
+				stateResult.goods_status = goodsInfo.goodsState
+			}
+			// 数据持久化处理
+			this.commit('m_cart/saveToStorage')
+		},
 		// 将购物车商品存储带本地
 		saveToStorage(state) {
 			uni.setStorageSync('cart', JSON.stringify(state.cart))

@@ -16,7 +16,8 @@
 <script>
 	import tabBarMixin from '../../mixins/tabbar-badge.js'
 	import {
-		mapState
+		mapState,
+		mapMutations
 	} from 'vuex'
 	export default {
 		mixins: [tabBarMixin],
@@ -26,9 +27,10 @@
 			};
 		},
 		methods: {
+			...mapMutations('m_cart', ['updateGoodsState']),
 			// 监听单选组件状态的最新变化
 			radioChangeFn(goodsInfo) {
-				console.log(goodsInfo)
+				this.updateGoodsState(goodsInfo)
 			}
 		},
 		computed: {

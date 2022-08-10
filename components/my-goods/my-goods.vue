@@ -51,10 +51,11 @@
 			// 像组件使用者发送	事件 以及传递数据
 			radioChangeHandler() {
 				this.$emit('radio-change', {
-					goods: this.goods.goods_id, // id
+					goodsId: this.goods.goods_id, // id
 					goodsState: !this.goods.goods_status // 最新状态
 				})
 			}
+		
 		}
 	}
 </script>
