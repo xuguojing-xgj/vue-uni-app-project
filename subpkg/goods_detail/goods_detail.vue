@@ -48,7 +48,8 @@
 <script>
 	import {
 		mapState,
-		mapMutations
+		mapMutations,
+		mapGetters
 	} from 'vuex'
 	export default {
 		data() {
@@ -61,7 +62,7 @@
 				}, {
 					icon: 'cart',
 					text: '购物车',
-					info: 7 // 购物车商品的数量
+					info: 0 // 购物车商品的数量
 				}],
 				buttonGroup: [{
 						text: '加入购物车',
@@ -113,7 +114,7 @@
 						goods_name: this.goods_info.goods_name, // 商品名称
 						goods_price: this.goods_info.goods_price, // 商品价格
 						goods_small_logo: this.goods_info.goods_small_logo, //小图片
-						goods_number: 1, // 购买数量
+						goods_count: 1, // 购买数量
 						goods_status: true, //购买状态
 					}
 					this.addToCart(goodsParams)
@@ -138,7 +139,17 @@
 			// 接收两个参数
 			// 第一个参数 : 从哪个模块导入数据
 			// 第二个参数 为 [], 表示导入的数据 需要引号包裹
-			...mapState('m_cart', ['cart'])
+			...mapState('m_cart', ['cart']),
+			...mapGetters('m_cart', ['total'])
+		},
+		watch: {
+			total(newTotal) {
+				const cartObj = this.options.find(item => item.text === '购物车')
+				if(cartObj) {
+					console.log(cartObj)
+					cartObj.info = newTotal
+				}
+			}
 		}
 	}
 </script>
