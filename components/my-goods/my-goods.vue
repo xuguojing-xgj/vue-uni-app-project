@@ -1,7 +1,7 @@
 <template>
 	<view class="goods-item">
 		<view class="goods-item-left">
-			<radio v-if="showRadio" :checked="goods.goods_status" color="#c00000" />
+			<radio v-if="showRadio" :checked="goods.goods_status" color="#c00000" @click="radioChangeHandler"/>
 			<image :src="goods.goods_small_logo || defaultPic" class="goods-pic"></image>
 		</view>
 
@@ -45,6 +45,15 @@
 			// 保留两位小数点
 			tofixed(price) {
 				return Number(price).toFixed(2)
+			}
+		},
+		methods: {
+			// 像组件使用者发送	事件 以及传递数据
+			radioChangeHandler() {
+				this.$emit('radio-change', {
+					goods: this.goods.goods_id, // id
+					goodsState: !this.goods.goods_status // 最新状态
+				})
 			}
 		}
 	}

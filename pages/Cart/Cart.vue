@@ -8,7 +8,7 @@
 
 		<!-- 购物车列表区域 -->
 		<block v-for="(goods, i) in cart" :key="i">
-			<my-goods :goods="goods" :showRadio="true"></my-goods>
+			<my-goods :goods="goods" :showRadio="true" @radio-change="radioChangeFn"></my-goods>
 		</block>
 	</view>
 </template>
@@ -24,6 +24,12 @@
 			return {
 
 			};
+		},
+		methods: {
+			// 监听单选组件状态的最新变化
+			radioChangeFn(goodsInfo) {
+				console.log(goodsInfo)
+			}
 		},
 		computed: {
 			...mapState('m_cart', ['cart'])
