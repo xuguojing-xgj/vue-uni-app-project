@@ -7,7 +7,7 @@
 				</view>
 
 				<!-- 渲染收货信息的盒子 -->
-				<view class="address-info-box" v-else>
+				<view class="address-info-box" >
 					<view class="row1">
 						<view class="row1-left">
 							<view class="username">收货人：<text>{{ address.userName }}</text></view>
@@ -22,6 +22,7 @@
 						<view class="row2-right">{{ addStr }}</view>
 					</view>
 				</view>
+
 				<!-- 底部的边框线 -->
 				<image src="/static/cart_border@2x.png" class="address-border"></image>
 			</view>
@@ -31,6 +32,11 @@
 </template>
 
 <script>
+	import {
+		mapState,
+		mapMutations,
+		mapGetters
+	} from 'vuex'
 	export default {
 		name: "my-address",
 		data() {
@@ -39,28 +45,23 @@
 			}
 		},
 		methods: {
+			...mapMutations('m_user', ['updateAddress']),
 			// 获取收货地址
 			async chooseAddress() {
 				// 2022 年 7 月 14 日起, 使用地理位置相关接口时需要提前在 app.json 中进行配置。
 				// "requiredPrivateInfos": ["chooseAddress"] 
 				//  解决不能跳转到原生收货地址问题
 				const [err, res] = await uni.chooseAddress().catch(err => err)
-				console.log(err)
-				console.log(res)
 				if (err === null && res.errMsg === 'chooseAddress:ok') {
-					this.address = res
-					// this.updateAddress(res)
-					return
+					// this.address = res
+					this.updateAddress(res)
 				}
 			}
 		},
 		computed: {
+			...mapState('m_user', ['address']),
 			// 拼接收货地址
-			addStr() {
-				if (!this.address.provinceName) return
-				return this.address.provinceName + this.address.cityName + this.address.countyName + this.address
-					.detailInfo
-			}
+			...mapGetters('m_user', ['addStr'])
 		}
 
 	}
