@@ -1,5 +1,7 @@
 <template>
 	<view>
+		<!-- 收货地址区域 -->
+		<my-address></my-address>
 		<!-- 购物车图标 -->
 		<view class="cart-title">
 			<uni-icons type="shop" size="18"></uni-icons>
