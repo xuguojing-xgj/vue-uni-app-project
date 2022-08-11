@@ -16,7 +16,8 @@
 				<view class="goods-price">
 					{{goods.goods_price | tofixed}}
 				</view>
-				<uni-number-box v-if="showNum" :min="1" :value="goods.goods_count"></uni-number-box>
+				<uni-number-box v-if="showNum" :min="1" :value="goods.goods_count" @change="numChangeHandler">
+				</uni-number-box>
 			</view>
 		</view>
 	</view>
@@ -55,6 +56,13 @@
 			}
 		},
 		methods: {
+			// 像组件使用者发送	事件 以及传递数据
+			numChangeHandler(value) {
+				this.$emit('num-change', {
+					goodsId: this.goods.goods_id, // id
+					goodsCount: value, //商品数量
+				})
+			},
 			// 像组件使用者发送	事件 以及传递数据
 			radioChangeHandler() {
 				this.$emit('radio-change', {
