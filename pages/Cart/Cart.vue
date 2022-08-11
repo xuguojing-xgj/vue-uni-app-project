@@ -9,10 +9,12 @@
 		</view>
 
 		<!-- 购物车列表区域 -->
-		<block v-for="(goods, i) in cart" :key="i">
+		<view class="goods-list" v-for="(goods, i) in cart" :key="i">
 			<my-goods :goods="goods" :showNum="true" :showRadio="true" @radio-change="radioChangeFn"
 				@num-change="numChangeFn"></my-goods>
-		</block>
+		</view>
+
+		<my-settle></my-settle>
 	</view>
 </template>
 
@@ -53,6 +55,7 @@
 </script>
 
 <style lang="scss">
+	
 	.cart-title {
 		height: 40px;
 		display: flex;
