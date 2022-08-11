@@ -23,11 +23,21 @@ export default {
 			console.log(state, goodsInfo)
 			this.commit('m_cart/saveToStorage')
 		},
+		// 更新商品购买数量
+		updateGoodsCount(state, goodsInfo) {
+			const stateResult = state.cart.find(item => item.goods_id === goodsInfo.goodsId)
+			console.log(stateResult)
+
+			if (stateResult) {
+				stateResult.goods_count = goodsInfo.goodsCount
+			}
+			this.commit('m_cart/saveToStorage')
+		},
 		// 更新商品状态
 		updateGoodsState(state, goodsInfo) {
-			
+
 			const stateResult = state.cart.find(item => item.goods_id === goodsInfo.goodsId)
-			
+
 			if (stateResult) {
 				stateResult.goods_status = goodsInfo.goodsState
 			}

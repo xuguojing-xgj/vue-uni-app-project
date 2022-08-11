@@ -28,14 +28,14 @@
 			};
 		},
 		methods: {
-			...mapMutations('m_cart', ['updateGoodsState']),
+			...mapMutations('m_cart', ['updateGoodsState','updateGoodsCount']),
 			// 监听单选组件状态的最新变化
 			radioChangeFn(goodsInfo) {
 				this.updateGoodsState(goodsInfo)
 			},
 			// 侦听数字输入框的变化
 			numChangeFn(goodsInfo) {
-				console.log(goodsInfo)
+				this.updateGoodsCount(goodsInfo)
 			}
 		},
 		computed: {
