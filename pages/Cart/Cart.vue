@@ -28,13 +28,19 @@
 			};
 		},
 		methods: {
-			...mapMutations('m_cart', ['updateGoodsState','updateGoodsCount']),
+			...mapMutations('m_cart', ['updateGoodsState', 'updateGoodsCount']),
 			// 监听单选组件状态的最新变化
 			radioChangeFn(goodsInfo) {
 				this.updateGoodsState(goodsInfo)
 			},
 			// 侦听数字输入框的变化
 			numChangeFn(goodsInfo) {
+				// 购物车-解决 NumberBox 数据不合法的问题 源码
+				// let value = parseInt(event.detail.value);
+				// if (isNaN(value)) {
+				// 	this.inputValue = this.min;
+				// 	return;
+				// }
 				this.updateGoodsCount(goodsInfo)
 			}
 		},
