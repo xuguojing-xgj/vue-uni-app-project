@@ -28,6 +28,7 @@
 		}
 
 	}],	
+	"requiredPrivateInfos": ["chooseAddress"],
 	// 创建分包
 	"subPackages": [{
 		"root": "subpkg",

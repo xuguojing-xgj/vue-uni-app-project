@@ -7,19 +7,19 @@
 				</view>
 
 				<!-- 渲染收货信息的盒子 -->
-				<view class="address-info-box" v-else @click="chooseAddress">
+				<view class="address-info-box" v-else>
 					<view class="row1">
 						<view class="row1-left">
-							<view class="username">收货人：</view>
+							<view class="username">收货人：<text>{{ address.userName }}</text></view>
 						</view>
 						<view class="row1-right">
-							<view class="phone">电话：</view>
+							<view class="phone">电话：<text>{{ address.telNumber }}</text></view>
 							<uni-icons type="arrowright" size="16"></uni-icons>
 						</view>
 					</view>
 					<view class="row2">
 						<view class="row2-left">收货地址：</view>
-						<view class="row2-right"></view>
+						<view class="row2-right">{{ addStr }}</view>
 					</view>
 				</view>
 				<!-- 底部的边框线 -->
@@ -47,7 +47,19 @@
 				const [err, res] = await uni.chooseAddress().catch(err => err)
 				console.log(err)
 				console.log(res)
-			
+				if (err === null && res.errMsg === 'chooseAddress:ok') {
+					this.address = res
+					// this.updateAddress(res)
+					return
+				}
+			}
+		},
+		computed: {
+			// 拼接收货地址
+			addStr() {
+				if (!this.address.provinceName) return
+				return this.address.provinceName + this.address.cityName + this.address.countyName + this.address
+					.detailInfo
 			}
 		}
 
