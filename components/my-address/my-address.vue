@@ -3,23 +3,23 @@
 			<view>
 				<!-- 选择收货地址的盒子 -->
 				<view class="address-choose-box" v-if="JSON.stringify(address) === '{}'">
-					<button type="primary" size="mini" class="btnChooseAddress">请选择收货地址+</button>
+					<button type="primary" size="mini" class="btnChooseAddress" @click="chooseAddress">请选择收货地址+</button>
 				</view>
 
 				<!-- 渲染收货信息的盒子 -->
-				<view class="address-info-box" v-else>
+				<view class="address-info-box" v-else @click="chooseAddress">
 					<view class="row1">
 						<view class="row1-left">
-							<view class="username">收货人：<text>{{ }}</text></view>
+							<view class="username">收货人：</view>
 						</view>
 						<view class="row1-right">
-							<view class="phone">电话：<text>{{ }}</text></view>
+							<view class="phone">电话：</view>
 							<uni-icons type="arrowright" size="16"></uni-icons>
 						</view>
 					</view>
 					<view class="row2">
 						<view class="row2-left">收货地址：</view>
-						<view class="row2-right">{{ }}</view>
+						<view class="row2-right"></view>
 					</view>
 				</view>
 				<!-- 底部的边框线 -->
@@ -36,8 +36,21 @@
 		data() {
 			return {
 				address: {}, // 收货地址
-			};
+			}
+		},
+		methods: {
+			// 获取收货地址
+			async chooseAddress() {
+				// 2022 年 7 月 14 日起, 使用地理位置相关接口时需要提前在 app.json 中进行配置。
+				// "requiredPrivateInfos": ["chooseAddress"] 
+				//  解决不能跳转到原生收货地址问题
+				const [err, res] = await uni.chooseAddress().catch(err => err)
+				console.log(err)
+				console.log(res)
+			
+			}
 		}
+
 	}
 </script>
 
